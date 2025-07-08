@@ -1,12 +1,39 @@
-# React + Vite
+# Project: useState Hook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ✔ Real Life Problem
 
-Currently, two official plugins are available:
+A user wants to keep track of items in a to-do list.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Project Goal:
 
-## Expanding the ESLint configuration
+- Add, complete, and delete tasks.
+- Show remaining tasks.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧩 Hooks Used:
+
+`useState`
+
+## 🛠 Implementation Details:
+
+- **Key Components:** `<AddNewTask />` , `<PendingTasks />`, `<CompletedTasks />`.
+- **State Structure:** App uses two states; `items` (array) which tracks the users tasks and `newTask` (string) which tracks the users input.
+- **Event Handlers:** When the user types into the task input i make a call to `updateNewTask` which grabs the current value of the input and then updates the state of `newTask` with `setNewTask`.
+
+## 📌 Hook Integration:
+
+- `useState` is used to manage dynamic state like the task list, input value, and task completion.
+- Code Snippet
+  ```jsx
+  const [items, setItems] = useState([]); // Manage task list
+  const [newTask, setNewTask] = useState(""); // Manage input value
+  ```
+- Without reloading the page, I can update and display a new task list anytime the state changes.
+
+## ✅ Testing / Validation:
+
+- User can add , complete, and delete tasks
+- Edge Case: I added a check empty input values and that prevent the user from adding a blank task and a listener for the `Enter` key that allows the user to create a task without the clicking the add the button.
+
+## 📈 Learning Notes:
+
+- Always use unique IDs to identify items on a list especially when working with derived or filtered versions of state. Indexes are only safe when your list is static

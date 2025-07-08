@@ -11,9 +11,20 @@ function AddNewTask(props) {
     setNewTask(task);
   };
 
+  const createId = () => Math.random().toString(16).slice(2);
+
   const createTask = () => {
-    addItem((prevItems) => [...prevItems, { task: newTask, isDone: false }]);
+    if (newTask.length <= 0) return; // return if task is empty
+    addItem((prevItems) => [
+      ...prevItems,
+      { id: createId(), task: newTask, isDone: false },
+    ]);
     setNewTask("");
+  };
+
+  const handleEnterKeyDown = (event) => {
+    if (event.key !== "Enter") return;
+    createTask();
   };
 
   return (
@@ -26,6 +37,7 @@ function AddNewTask(props) {
           id="new-task"
           value={newTask}
           onChange={(event) => updateNewTask(event)}
+          onKeyDown={(event) => handleEnterKeyDown(event)}
         />
       </div>
       <button onClick={createTask} aria-label="Add Task">
